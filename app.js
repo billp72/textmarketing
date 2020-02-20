@@ -29,14 +29,16 @@ app.use(cookieParser());
 app.use(session(
     {
         secret: 'keyboard cat',
-        store: sessionstore.createSessionStore()
+        store: sessionstore.createSessionStore(),
+        resave: true,
+        saveUninitialized: true
     }
 ));
 app.use(express.static(path.join(__dirname, 'public')));
 //app.set("models", models);
-// Shopify Authentication
 //const MerchantModel = app.get("models").merchant;
 
+// Shopify Authentication
 // This function initializes the Shopify OAuth Process
 // The template in views/embedded_app_redirect.ejs is rendered 
 app.get('/shopify_auth', function(req, res) {
@@ -146,7 +148,6 @@ app.post('/submitsms', function(req, res){
     var msg = req.body.textmessage + ' ' + req.body.url,
         batch = req.body.contact;
         batch.forEach(function(sms){
-          console.log(sms)
           client.messages
              .create({
                 body: msg,
@@ -208,10 +209,13 @@ app.use(function(err, req, res) {
         error: {}
     });
 });
-//var server_ip_address = '127.0.0.1';
-app.set('port', process.env.PORT || 3000);
-/*var server = app.listen(app.get('port'), server_ip_address, function() {
+
+/*
+var server_ip_address = '127.0.0.1';
+  app.set('port', process.env.PORT || 3000);
+  var server = app.listen(app.get('port'), server_ip_address, function() {
   console.log('Express server listening on port ' + server.address().port);
-});*/
+});
+*/
 
 module.exports = app;
