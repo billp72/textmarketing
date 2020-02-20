@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/javascript/javascript.js"></script>
+	<link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<title><%= title %></title>
+</head>
+<body>
+	<div id="overlay">
+		<div class="cv-spinner">
+			<span class="spinner"></span>
+		</div>
+	</div>
+	<div class="row">	
+		<div class="large-12 columns">
+			<div class="stats"></div>
+			<h3><%= title %></h3>
+				<label>Body
+					<textarea id="textmessage" placeholder="message body"></textarea>
+				</label>
+				<label>URL
+					<input id="url" placeholder="Link to page or promotion" type="url" />
+				</label>
+				<button id="submitform" type="button" class="success button">
+					Send
+				</button>
+		</div>
+	</div>
+	<script>
+		$(".stats").text(JSON.parse(localStorage.getItem("save")).length + " messages will be sent");
+	</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+	<script type="text/javascript">
+	ShopifyApp.init({
+		apiKey: '<%= api_key %>',
+		shopOrigin: 'https://<%= shop %>.myshopify.com'
+	});
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<title><%= title %></title>
+</head>
+<body>
+	<script type="text/javascript">
+	ShopifyApp.ready(function(){
+		ShopifyApp.Bar.initialize({
+			title: '<%= title %>',
+			icon: '/images/logo.png',
+			buttons: {
+				secondary: [
+					// Dropdown example
+					{ 
+						label: "More",
+						type: "dropdown",
+						links: [
+							// Link Button that opens in the app
+							{ label: "Update", href: "/update", target: "app" },
+							// Button with a callback function
+							{ label: "Delete", callback: function(){ alert("destroy") } }
+						]
+					},
+					{ 
+						// Link Button that opens in a new window
+						label: "Preview", href: 'http://<%= shop %>.myshopify.com', 
+						target: "new" 
+					},
+					{ 
+						label: "Message History", 
+						callback: function() {
+							ShopifyApp.Modal.open({
+							  src: 'https://8665a278.ngrok.io/modal_content?var=history',
+							  title: 'Message History',
+							  width: 'small',
+							  height: 300,
+							  buttons: {
+							    primary: { label: "OK" },
+							    secondary: [
+							      { label: "Cancel", callback: function (label) { ShopifyApp.Modal.close(); } }
+							    ]
+							  }
+							});
+						}
+					}
+				]
+			}
+		});
+		ShopifyApp.Bar.loadingOff();
+
+	});
+	</script>
+	  
+	  <img style="width:100%; height:300px;" src="/images/twilio.jpg" />
+	  <p style="background-color: #F0F0F0; padding: 15px;">
+		Usage
+		<ul>
+			<li>Select Date Range</li>
+			<li>Click Search</li>
+			<li>Click 'Message customers'</li>
+			<li>Fill out the input fields & send</li>
+		</ul>
+		To see the dates previously used, click history
+		<br /><br />
+		<a class="button" href="/customers">Continue</a>
+	 </p>
+</body>
+</html>

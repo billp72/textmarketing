@@ -1,0 +1,56 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+#history {
+  list-style-type: none;
+}
+#history li {
+  margin-bottom: 10px;
+}
+#history .list-title{
+  background-color:lightblue;
+  border:1px grey solid;
+  padding: 5px;
+}
+#overlay{	
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	display: none;
+	background: rgba(197, 196, 196, 0.4);
+}
+.cv-spinner {
+	height: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;  
+}
+.spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px #ddd solid;
+	border-top: 4px #2e93e6 solid;
+	border-radius: 50%;
+	animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+	100% { 
+		transform: rotate(360deg); 
+	}
+}
+.is-hide{
+	display:none;
+}
+.historyBtn {
+  width: 13.7rem !important;
+}
+.stats {
+  padding:15px 0; 
+}

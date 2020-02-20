@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+	<script type="text/javascript">
+	ShopifyApp.init({
+		apiKey: '<%= api_key %>',
+		shopOrigin: 'https://<%= shop %>.myshopify.com'
+	});
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<title><%= title %></title>
+</head>
+<body>
+	<script type="text/javascript">
+	ShopifyApp.ready(function(){
+		ShopifyApp.Bar.initialize({
+			buttons: {
+				primary: {
+					label: "Home",
+					href: '/'
+				},
+				secondary: [
+					{ 
+						label: "Preview Store", href: 'http://<%= shop %>.myshopify.com', 
+						target: "new"
+					}
+				]
+			},
+			title: '<%= title %>',
+			icon: '/images/logo.png'
+		});
+		ShopifyApp.Bar.loadingOff();
+	});
+    
+	</script>
+	<div class="row">
+		<div class="large-12 columns"><h4><%= title %></h4></div>
+		<div class="small-5 columns">
+			<input
+                type="date"
+                name="startDate"
+              />
+		</div>
+		
+		<div class="small-5 columns">
+			<input
+                type="date"
+                name="endDate"
+              />
+		</div>
+		<div class="small-2 columns">
+			<a id="search" style="padding: .5rem 2.7rem .6rem 2.7rem" class="button">search</a>
+		</div>
+		<div class="large-12 columns">
+			<table style="width: 100%;border-collapse:collapse;">
+				<thead>
+				<tr>
+					<th colspan="9">Name</th>
+					<th>Became a Customer</th>
+					<th>Phone Number</th>
+					<th>Email</th>
+				</tr>
+				</thead>
+				<tbody>
+					<div id="overlay">
+						<div class="cv-spinner">
+							<span class="spinner"></span>
+						</div>
+					</div>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+	  	<div class="small-9 columns">
+        <a class="button smsBtn">Message customers</a>
+	  </div>
+	  <div class="small-3 columns">
+        <a class="button historyBtn">Search history</a>
+      </div>
+	  </div>
+	  <script>
+	    $("a.smsBtn").on("click", function(evt){ 
+			if(store.contact.length === 0) return false;
+			const message = {};
+			message.src = "https://8665a278.ngrok.io/modal_content?var=sms";
+			message.title = "Customer SMS";
+		     ShopifyApp.Modal.open(message, function(){
+
+			 });
+		});
+
+		$("a.historyBtn").on("click", function(evt){ 
+			const history = {};
+			history.src = "https://8665a278.ngrok.io/modal_content?var=history",
+		    history.title = "Customers created btw these dates recieved messages";
+			history.buttons = {
+				primary: {
+					label: "Clear History",
+					callback: function(){ 
+						localStorage.clear();
+						alert('History Cleared'); 
+					}
+				}
+  			}
+		     ShopifyApp.Modal.open(history, function(){
+
+			 });
+		});
+
+		$("select").on("change", function(){
+			console.log(this);
+		})
+	</script>
+	<script src="/javascript/javascript.js"></script>
+</body>
+</html>
