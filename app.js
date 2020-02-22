@@ -141,10 +141,6 @@ app.post('/customers', function(req, res, next) {
         const { customers } = body;
         let approved_customers = customers.filter(x => x.accepts_marketing)
         res.send(approved_customers);
-        
-        if(approved_customers.length === 0){
-            res.send([]);
-        }
     })
 })
 
