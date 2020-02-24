@@ -125,6 +125,14 @@ app.get('/customers', function(req, res){
     });
 });
 
+app.get('/privacypolicy', function(req, res){
+    res.render('privacypolicy', {
+        title: 'Privacy Policy', 
+        api_key: config.oauth.api_key,
+        shop: req.session.shop
+    });
+});
+
 app.post('/customers', function(req, res, next) {
     const { created_at_min, created_at_max } = req.body;
     request.get({

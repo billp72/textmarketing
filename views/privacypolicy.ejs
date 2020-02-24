@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+	<script type="text/javascript">
+	ShopifyApp.init({
+		apiKey: '<%= api_key %>',
+		shopOrigin: 'https://<%= shop %>.myshopify.com'
+	});
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<title><%= title %></title>
+</head>
+<body>
+	<script type="text/javascript">
+	ShopifyApp.ready(function(){
+		ShopifyApp.Bar.initialize({
+			title: '<%= title %>',
+			icon: '/images/logo.png',
+			buttons: {
+				secondary: [
+					// Dropdown example
+					{
+						label: "Home",
+						href: '/'
+					}	
+				]
+			}
+		});
+		ShopifyApp.Bar.loadingOff();
+
+	});
+	</script>
+	  
+	  <img style="width:100%; height:300px;" src="/images/twilio.jpg" />
+	  <p style="background-color: #F0F0F0; padding: 15px;">
+		No data collected by this app is sold, distributed to a third party, or made public in any way. We may save some information
+		to our private database for the purposes of customizing the user experience but not for resale or distribution. <br /><br />
+		We have the right to change these terms at any time. 
+		We will notify you well in advance of any changes to this privacy policy such that you may contact us about it.
+	 </p>
+</body>
+</html>
