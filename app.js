@@ -90,7 +90,7 @@ app.get('/install', function(req, res) {
     });
 })
 
-// Renders content for a modal
+// Renders content for a modal 
 app.get('/modal_content', function(req, res) {
     if(req.query.var === 'sms'){
         res.render('modal_content', {
